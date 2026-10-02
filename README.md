@@ -2,6 +2,13 @@
 
 # WorkCore Extension Suite
 
+## Product architecture and engineering highlights
+
+WorkCore is packaged as five domain extensions on top of one mandatory shared foundation, separating business capabilities from the original consolidated application.
+
+- **Architecture:** A deterministic Python build tool produces packages and release manifests; ownership, dependencies, checksums, provider patches, and host-overlay integration are validated as explicit contracts.
+- **Distinctive engineering:** The extraction’s defining feature is single-owner package boundaries: every source file/module belongs to one package, while tenancy, permissions, governed actions, read models, Rewind, outbox, and host adapters stay in the shared foundation.
+
 > **Status: active extraction work.** Draft PR #1 is open; the README's validation commands describe checks available in the repository, not a claim that host integration or release packaging is complete.
 
 WorkCore has been extracted from the consolidated MagicAI application into **five domain extensions** backed by one mandatory shared foundation. The split preserves the original canonical PHP namespaces, historical data and governed runtime while replacing automatic module fallback-loading with explicit package ownership.
