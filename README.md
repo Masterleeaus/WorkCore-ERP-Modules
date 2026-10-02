@@ -1,6 +1,6 @@
 ![WorkCore Extension Suite — DOMAIN EXTENSIONS · SHARED FOUNDATION](docs/images/portfolio-banner.svg)
 
-# WorkCore Extensions
+# WorkCore Extension Suite
 
 WorkCore has been extracted from the consolidated MagicAI application into **five domain extensions** backed by one mandatory shared foundation. The split preserves the original canonical PHP namespaces, historical data and governed runtime while replacing automatic module fallback-loading with explicit package ownership.
 
