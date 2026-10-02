@@ -2,6 +2,8 @@
 
 # WorkCore Extension Suite
 
+> **Status: active extraction work.** Draft PR #1 is open; the README's validation commands describe checks available in the repository, not a claim that host integration or release packaging is complete.
+
 WorkCore has been extracted from the consolidated MagicAI application into **five domain extensions** backed by one mandatory shared foundation. The split preserves the original canonical PHP namespaces, historical data and governed runtime while replacing automatic module fallback-loading with explicit package ownership.
 
 ## Packages
@@ -65,4 +67,4 @@ Continuous integration repeats the ownership, manifest, checksum, dependency and
 4. Run the full validation commands above.
 5. Open a draft pull request and keep it draft until host integration and partial-install tests pass.
 
-Active extraction work is on [`feature/five-domain-extension-split`](../../tree/feature/five-domain-extension-split) in [draft PR #1](../../pull/1).
+Active extraction work is on [`feature/five-domain-extension-split`](../../tree/feature/five-domain-extension-split) in [draft PR #1](../../pull/1). No repository-level `LICENSE` file was found; confirm and document the intended license and source attribution before public release.
