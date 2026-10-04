@@ -49,7 +49,7 @@ The extracted source includes a concrete host-facing AI surface in the Business 
 - AgentOrchestrator.php enforces company and actor scope, idempotent run replay, bounded steps and tool calls, persisted conversations, memory, and approval pauses.
 - OpenAICompatibleProvider.php normalises model responses, token usage, tool calls, timeouts, and retryable provider failures behind a provider contract.
 - ToolApprovalPolicy.php blocks critical tools and pauses high-risk or confirmation-required tools before execution.
-- Domain *ToolRegistry.php files expose package capabilities as structured tools; governed WorkCore actions remain the write authority.
+- Domain ToolRegistry files expose package capabilities as structured tools; governed WorkCore actions remain the write authority.
 
 This is an extension-suite AI surface, not a claim that live provider credentials, authenticated host workflows, or operational deployment are configured in this repository.
 
