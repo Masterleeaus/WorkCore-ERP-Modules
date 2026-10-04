@@ -138,8 +138,6 @@ Get-ChildItem packages -Recurse -Filter *.php | ForEach-Object { php -l $_.FullN
 ~~~
 
 The Python checks are cross-platform.
-~~~
-~~~
 
 Continuous integration repeats ownership, manifest, checksum, dependency, and PHP syntax checks for every pull request and relevant branch push. The commands above are repository checks; they do not replace host integration or clean-install verification.
 
