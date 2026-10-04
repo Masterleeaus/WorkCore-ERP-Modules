@@ -9,7 +9,7 @@ WorkCore is packaged as five domain extensions on top of one mandatory shared fo
 - **Architecture:** A deterministic Python build tool produces packages and release manifests; ownership, dependencies, checksums, provider patches, and host-overlay integration are validated as explicit contracts.
 - **Distinctive engineering:** The extraction’s defining feature is single-owner package boundaries: every source file/module belongs to one package, while tenancy, permissions, governed actions, read models, Rewind, outbox, and host adapters stay in the shared foundation.
 
-> **Status: active extraction work.** Draft PR #1 is open; the README's validation commands describe checks available in the repository, not a claim that host integration or release packaging is complete.
+> **Status: merged extraction baseline.** The five-domain split was merged through [PR #1](../../pull/1), which is now closed and retained as the historical review record. The validation commands below describe checks available in the repository; they do not claim that every host integration or release packaging path is production-ready.
 
 WorkCore has been extracted from the consolidated MagicAI application into **five domain extensions** backed by one mandatory shared foundation. The split preserves the original canonical PHP namespaces, historical data and governed runtime while replacing automatic module fallback-loading with explicit package ownership.
 
@@ -46,6 +46,17 @@ Every domain extension requires `workcore/shared-foundation` at the same package
 
 The complete file-level ownership and transformation record is in [`ownership-manifest.json`](ownership-manifest.json). Transfer integrity is recorded in [`IMPORT-PROVENANCE.md`](IMPORT-PROVENANCE.md).
 
+## AI and agent boundary
+
+The extracted source includes a concrete, host-facing AI surface in the Business Network package:
+
+- `AgentOrchestrator.php` enforces company/actor scope, idempotent run replay, bounded steps/tool calls, persisted conversations, memory, and approval pauses.
+- `OpenAICompatibleProvider.php` normalises model responses, token usage, tool calls, timeouts, and retryable provider failures behind a provider contract.
+- `ToolApprovalPolicy.php` blocks critical tools and pauses high-risk or confirmation-required tools before execution.
+- Domain `*ToolRegistry.php` files expose package capabilities as structured tools; governed WorkCore actions remain the write authority.
+
+These are source-level capabilities in an extension suite. Live provider credentials, host wiring, authenticated workflows, and operational deployment are outside this repository's validation claim.
+
 ## Build from the consolidated source
 
 ```bash
@@ -74,4 +85,4 @@ Continuous integration repeats the ownership, manifest, checksum, dependency and
 4. Run the full validation commands above.
 5. Open a draft pull request and keep it draft until host integration and partial-install tests pass.
 
-Active extraction work is on [`feature/five-domain-extension-split`](../../tree/feature/five-domain-extension-split) in [draft PR #1](../../pull/1). No repository-level `LICENSE` file was found; confirm and document the intended license and source attribution before public release.
+The historical extraction branch is [`feature/five-domain-extension-split`](../../tree/feature/five-domain-extension-split); it is preserved as provenance for merged PR #1, not current workflow guidance. No repository-level `LICENSE` file was found; confirm and document the intended license and source attribution before public release.
