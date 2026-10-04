@@ -8,9 +8,57 @@
 
 > A deterministic extraction of a modular business platform into six packages—one shared foundation and five domain extensions—with ownership, dependencies, checksums, and governed AI capabilities made explicit.
 
+## Overview
+
 WorkCore Extension Suite addresses a practical architecture problem: how to separate a large consolidated application into installable domain packages without losing canonical namespaces, historical migrations, tenant boundaries, governed actions, or host integration. The package set is six parts: one mandatory shared foundation plus five domain extensions. The repository packages that extraction as a repeatable build and validation system.
 
-## Why this project matters
+
+## Measured evidence
+
+The committed repository-integrity test gives this project unusually concrete architecture evidence:
+
+| Measured property | Expected repository state | Evidence |
+| --- | ---: | --- |
+| Installable packages | **6** | one shared foundation + five domain extensions |
+| Assigned internal modules | **35** | exact package ownership validation |
+| Owned domain files | **2,158** | repository-integrity report |
+| Repository-integrity tests | **3** focused tests | `tests/test_repository_integrity.py` |
+| Broader extraction/build tests | **16** test methods | `tests/test_build_extensions.py` |
+| Domain-extension dependency rule | all 5 require `workcore/shared-foundation` | integrity test |
+| Destructive uninstall | **forbidden** for domain extensions | integrity test |
+
+Reproduce the self-contained committed-package checks with:
+
+```bash
+python -m unittest tests/test_repository_integrity.py -v
+python tools/validate_repository.py --repo .
+```
+
+Some build tests intentionally require the original consolidated source archive or retained legacy release ZIPs and are skipped when those inputs are unavailable. That distinction is preserved rather than reporting the 16 methods as an unconditional green suite.
+
+## What is new
+
+WorkCore's technical signature is a **deterministic monolith-to-extension extraction system** that treats package ownership as a machine-checkable contract.
+
+```text
+Consolidated WorkCore source
+        ↓
+Module discovery
+        ↓
+Exact ownership assignment
+        ↓
+Shared foundation + 5 domain packages
+        ↓
+Manifest / dependency / provider transforms
+        ↓
+Checksums + ownership manifest
+        ↓
+Repository validation
+```
+
+The important design choice is that package boundaries do not redefine the canonical domain model. Namespaces remain stable, historical migrations stay with the shared foundation until clean-install baselines are proven, and cross-extension writes are expected to use governed actions/contracts/events rather than foreign-table shortcuts.
+
+## Verified capabilities
 
 A package split is only useful if the result is deterministic and safe to evolve. WorkCore makes the boundary reviewable:
 
