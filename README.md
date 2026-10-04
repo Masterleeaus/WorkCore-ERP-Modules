@@ -1,10 +1,10 @@
 ![WorkCore Extension Suite — DOMAIN EXTENSIONS · SHARED FOUNDATION](docs/images/portfolio-banner.svg)
 
-# workcore-extensions — WorkCore Extension Suite
+# WorkCore-ERP-Modules — WorkCore Extension Suite
 
-> A deterministic extraction of a modular business platform into five domain extensions backed by one shared foundation, with ownership, dependencies, checksums, and governed AI capabilities made explicit.
+> A deterministic extraction of a modular business platform into six packages—one shared foundation and five domain extensions—with ownership, dependencies, checksums, and governed AI capabilities made explicit.
 
-WorkCore Extension Suite addresses a practical architecture problem: how to separate a large consolidated application into installable domain packages without losing canonical namespaces, historical migrations, tenant boundaries, governed actions, or host integration. The repository packages that extraction as a repeatable build and validation system.
+WorkCore Extension Suite addresses a practical architecture problem: how to separate a large consolidated application into installable domain packages without losing canonical namespaces, historical migrations, tenant boundaries, governed actions, or host integration. The package set is six parts: one mandatory shared foundation plus five domain extensions. The repository packages that extraction as a repeatable build and validation system.
 
 ## Why this project matters
 
@@ -46,10 +46,10 @@ The complete file-level ownership and transformation record is in ownership-mani
 
 The extracted source includes a concrete host-facing AI surface in the Business Network package:
 
-- AgentOrchestrator.php enforces company and actor scope, idempotent run replay, bounded steps and tool calls, persisted conversations, memory, and approval pauses.
-- OpenAICompatibleProvider.php normalises model responses, token usage, tool calls, timeouts, and retryable provider failures behind a provider contract.
-- ToolApprovalPolicy.php blocks critical tools and pauses high-risk or confirmation-required tools before execution.
-- Domain ToolRegistry files expose package capabilities as structured tools; governed WorkCore actions remain the write authority.
+- [AgentOrchestrator.php](packages/workcore-business-network/src/Domains/WorkCore/System/AI/Orchestration/AgentOrchestrator.php) enforces company and actor scope, idempotent run replay, bounded steps and tool calls, persisted conversations, memory, and approval pauses.
+- [OpenAICompatibleProvider.php](packages/workcore-business-network/src/Domains/WorkCore/System/AI/Providers/OpenAICompatibleProvider.php) normalises model responses, token usage, tool calls, timeouts, and retryable provider failures behind a provider contract.
+- [ToolApprovalPolicy.php](packages/workcore-business-network/src/Domains/WorkCore/System/AI/Orchestration/ToolApprovalPolicy.php) blocks critical tools and pauses high-risk or confirmation-required tools before execution.
+- [CRMToolRegistry.php](packages/workcore-business-network/src/Domains/WorkCore/System/Modules/CRM/AI/CRMToolRegistry.php) is one domain-tool example; package capabilities are exposed as structured tools while governed WorkCore actions remain the write authority.
 
 This is an extension-suite AI surface, not a claim that live provider credentials, authenticated host workflows, or operational deployment are configured in this repository.
 
@@ -77,6 +77,16 @@ The source directory must contain app/Domains/WorkCore. The builder rejects unkn
 python -m unittest tests/test_repository_integrity.py -v
 python tools/validate_repository.py --repo .
 find packages -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l
+~~~
+
+The final command is a POSIX-shell lint pass. On Windows, use the equivalent PowerShell check:
+
+~~~
+Get-ChildItem packages -Recurse -Filter *.php | ForEach-Object { php -l $_.FullName }
+~~~
+
+The Python checks are cross-platform.
+~~~
 ~~~
 
 Continuous integration repeats ownership, manifest, checksum, dependency, and PHP syntax checks for every pull request and relevant branch push. The commands above are repository checks; they do not replace host integration or clean-install verification.
