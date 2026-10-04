@@ -1,8 +1,12 @@
-![WorkCore Extension Suite — DOMAIN EXTENSIONS · SHARED FOUNDATION](docs/images/portfolio-banner.svg)
+![WorkCore ERP Modules — six domain extensions backed by one shared foundation and deterministic build tooling](docs/images/workcore-erp-banner.svg)
 
 # WorkCore Extension Suite
 
 ## Product architecture and engineering highlights
+
+<p align="center">
+  <img src="docs/images/workcore-erp-architecture.svg" alt="WorkCore ERP Modules extraction from one shared foundation through business network, commercial, operations, property, and workforce assurance packages to deterministic manifests and checksums." width="100%" />
+</p>
 
 WorkCore is packaged as five domain extensions on top of one mandatory shared foundation, separating business capabilities from the original consolidated application.
 
